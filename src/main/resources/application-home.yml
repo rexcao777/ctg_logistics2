@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 60000
+      idle-timeout: 50000
+      validation-timeout: 8000
+      max-lifetime: 60000
+      login-timeout: 5
+      maximum-pool-size: 350
+      minimum-idle: 10
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-m5e542l814j635oygdo.mysql.rds.aliyuncs.com:3306/urm_only?characterEncoding=utf-8&allowMultiQueries=true
+    username: stupid_pig
+    password: ctg@123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    max-active: 1500
+    max-wait: -1
+    max-idle: 30
+    min-idle: 10
+    database: 20
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#指定日志配置文件：
+logging:
+  config: classpath:logback.xml
+#阻止eureka去寻找注册中心 尽管已经把注解@EnableEurekaClient注释掉
+eureka:
+    client:
+      register-with-eureka: false
+      fetch-registry: false
+oss:
+  endpoint: http://oss-cn-shanghai.aliyuncs.com
+  accessKeyId: LTAIg52OToLAqTPF
+  accessKeySecret: oiRdzTjZZcirAWlfl5BHpdyYUidP21
+  bucketName: ctgdev
+  keyPath: urm/
+
+#微信配置
+wechat:
+  appId: wxa8e4816cf1489dab
+  appSecret: ca51169234374a2d17e372e95fdd5a88
+  accessTokenUrl: https://api.weixin.qq.com/sns/oauth2/access_token
+  refreshTokenUrl: https://api.weixin.qq.com/sns/oauth2/refresh_token
+  userInfoUrl: https://api.weixin.qq.com/sns/userinfo

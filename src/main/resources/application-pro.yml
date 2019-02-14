@@ -1,0 +1,20 @@
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8762/eureka/
+spring:
+  cloud:
+    config:
+      profile: dev
+      discovery:
+        service-id: config
+        enabled: true
+#feign:
+#    hystrix:
+#      enabled: true
+#oss:
+#  endpoint: http://oss-cn-qingdao.aliyuncs.com
+#  accessKeyId: LTAIg52OToLAqTPF
+#  accessKeySecret: oiRdzTjZZcirAWlfl5BHpdyYUidP21
+#  bucketName: ctgoe
+#  keyPath: urm/

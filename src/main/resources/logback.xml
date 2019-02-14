@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <property name="CONSOLE_LOG_PATTERN" value="%date{HH:mm:ss.SSS} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
+    <!-- 这个会打印到 catalina.out 文件上 -->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<encoding>UTF-8</encoding>-->
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <appender name="infoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<File>d:/tomcatLog/ctg.log</File>-->
+        <File>/opt/tomcat/logs/ctg_api_info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--<fileNamePattern>d:/tomcatLog/ctg.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+            <fileNamePattern>/opt/tomcat/logs/ctg_api_info.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!--<append>true</append>-->
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+
+    <appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<File>d:/tomcatLog/error.log</File>-->
+        <File>/opt/tomcat/logs/ctg_api_error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 发布到Linux服务器上时的日志路径： -->
+            <fileNamePattern>/opt/tomcat/logs/ctg_api_error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!-- 本地服务器上时的日志路径： -->
+            <!--<fileNamePattern>d:/tomcatLog/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="com.ctgstw.urmmicro" additivity="false" level="INFO" >
+        <appender-ref ref="infoLog" />
+        <appender-ref ref="consoleLog"/>
+    </logger>
+
+    <logger name="com.ctgstw.urmmicro.mapper" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="infoLog"/>
+        <appender-ref ref="errorLog"/>
+    </root>
+
+</configuration>
