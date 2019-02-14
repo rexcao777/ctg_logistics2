@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgstw.logisticsmic.mapper.LogisticsWaybillMapper">
+  <resultMap id="BaseResultMap" type="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="logistics_company_id" jdbcType="INTEGER" property="logisticsCompanyId" />
+    <result column="waybill_number" jdbcType="VARCHAR" property="waybillNumber" />
+    <result column="send_company_name" jdbcType="VARCHAR" property="sendCompanyName" />
+    <result column="send_company_id" jdbcType="INTEGER" property="sendCompanyId" />
+    <result column="send_customer_id" jdbcType="INTEGER" property="sendCustomerId" />
+    <result column="send_name" jdbcType="VARCHAR" property="sendName" />
+    <result column="send_con_id" jdbcType="INTEGER" property="sendConId" />
+    <result column="send_phone" jdbcType="VARCHAR" property="sendPhone" />
+    <result column="send_province" jdbcType="VARCHAR" property="sendProvince" />
+    <result column="send_city" jdbcType="VARCHAR" property="sendCity" />
+    <result column="send_district" jdbcType="VARCHAR" property="sendDistrict" />
+    <result column="send_detailaddress" jdbcType="VARCHAR" property="sendDetailaddress" />
+    <result column="send_del_id" jdbcType="INTEGER" property="sendDelId" />
+    <result column="receive_company_name" jdbcType="VARCHAR" property="receiveCompanyName" />
+    <result column="receive_company_id" jdbcType="INTEGER" property="receiveCompanyId" />
+    <result column="receive_customer_id" jdbcType="INTEGER" property="receiveCustomerId" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_con_id" jdbcType="INTEGER" property="receiveConId" />
+    <result column="receive_phone" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="receive_province" jdbcType="VARCHAR" property="receiveProvince" />
+    <result column="receive_city" jdbcType="VARCHAR" property="receiveCity" />
+    <result column="receive_district" jdbcType="VARCHAR" property="receiveDistrict" />
+    <result column="receive_detailaddress" jdbcType="VARCHAR" property="receiveDetailaddress" />
+    <result column="receive_del_id" jdbcType="INTEGER" property="receiveDelId" />
+    <result column="route_id" jdbcType="INTEGER" property="routeId" />
+    <result column="frequency_id" jdbcType="INTEGER" property="frequencyId" />
+    <result column="driver_id" jdbcType="INTEGER" property="driverId" />
+    <result column="instead_goods_payment" jdbcType="DECIMAL" property="insteadGoodsPayment" />
+    <result column="instead_service_charge" jdbcType="DECIMAL" property="insteadServiceCharge" />
+    <result column="door_get_payment" jdbcType="DECIMAL" property="doorGetPayment" />
+    <result column="door_get_time" jdbcType="VARCHAR" property="doorGetTime" />
+    <result column="goods_statement_value" jdbcType="DECIMAL" property="goodsStatementValue" />
+    <result column="insurance_charge" jdbcType="DECIMAL" property="insuranceCharge" />
+    <result column="packing_charge" jdbcType="DECIMAL" property="packingCharge" />
+    <result column="other_charge" jdbcType="DECIMAL" property="otherCharge" />
+    <result column="total_account" jdbcType="DECIMAL" property="totalAccount" />
+    <result column="freight_charge" jdbcType="DECIMAL" property="freightCharge" />
+    <result column="service_charge" jdbcType="DECIMAL" property="serviceCharge" />
+    <result column="total_charge" jdbcType="DECIMAL" property="totalCharge" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_check" jdbcType="VARCHAR" property="isCheck" />
+    <result column="is_no_use" jdbcType="VARCHAR" property="isNoUse" />
+    <result column="actual_get" jdbcType="DECIMAL" property="actualGet" />
+    <result column="is_e_business" jdbcType="VARCHAR" property="isEBusiness" />
+    <result column="driver_remark" jdbcType="VARCHAR" property="driverRemark" />
+    <result column="actual_instead_get" jdbcType="DECIMAL" property="actualInsteadGet" />
+    <result column="is_balance" jdbcType="VARCHAR" property="isBalance" />
+    <result column="is_balance_instead" jdbcType="VARCHAR" property="isBalanceInstead" />
+    <result column="is_give_out" jdbcType="VARCHAR" property="isGiveOut" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="logistics_company_name" jdbcType="VARCHAR" property="logisticsCompanyName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, logistics_company_id, waybill_number, send_company_name, send_company_id, send_customer_id, 
+    send_name, send_con_id, send_phone, send_province, send_city, send_district, send_detailaddress, 
+    send_del_id, receive_company_name, receive_company_id, receive_customer_id, receive_name, 
+    receive_con_id, receive_phone, receive_province, receive_city, receive_district, 
+    receive_detailaddress, receive_del_id, route_id, frequency_id, driver_id, instead_goods_payment, 
+    instead_service_charge, door_get_payment, door_get_time, goods_statement_value, insurance_charge, 
+    packing_charge, other_charge, total_account, freight_charge, service_charge, total_charge, 
+    payment_type, create_time, is_check, is_no_use, actual_get, is_e_business, driver_remark, 
+    actual_instead_get, is_balance, is_balance_instead, is_give_out, operator_id, logistics_company_name
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybillExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from logistics_waybill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from logistics_waybill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from logistics_waybill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from logistics_waybill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybillExample">
+    delete from logistics_waybill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into logistics_waybill (logistics_company_id, waybill_number, 
+      send_company_name, send_company_id, send_customer_id, 
+      send_name, send_con_id, send_phone, 
+      send_province, send_city, send_district, 
+      send_detailaddress, send_del_id, receive_company_name, 
+      receive_company_id, receive_customer_id, receive_name, 
+      receive_con_id, receive_phone, receive_province, 
+      receive_city, receive_district, receive_detailaddress, 
+      receive_del_id, route_id, frequency_id, 
+      driver_id, instead_goods_payment, instead_service_charge, 
+      door_get_payment, door_get_time, goods_statement_value, 
+      insurance_charge, packing_charge, other_charge, 
+      total_account, freight_charge, service_charge, 
+      total_charge, payment_type, create_time, 
+      is_check, is_no_use, actual_get, 
+      is_e_business, driver_remark, actual_instead_get, 
+      is_balance, is_balance_instead, is_give_out, 
+      operator_id, logistics_company_name, remark
+      )
+    values (#{logisticsCompanyId,jdbcType=INTEGER}, #{waybillNumber,jdbcType=VARCHAR}, 
+      #{sendCompanyName,jdbcType=VARCHAR}, #{sendCompanyId,jdbcType=INTEGER}, #{sendCustomerId,jdbcType=INTEGER}, 
+      #{sendName,jdbcType=VARCHAR}, #{sendConId,jdbcType=INTEGER}, #{sendPhone,jdbcType=VARCHAR}, 
+      #{sendProvince,jdbcType=VARCHAR}, #{sendCity,jdbcType=VARCHAR}, #{sendDistrict,jdbcType=VARCHAR}, 
+      #{sendDetailaddress,jdbcType=VARCHAR}, #{sendDelId,jdbcType=INTEGER}, #{receiveCompanyName,jdbcType=VARCHAR}, 
+      #{receiveCompanyId,jdbcType=INTEGER}, #{receiveCustomerId,jdbcType=INTEGER}, #{receiveName,jdbcType=VARCHAR}, 
+      #{receiveConId,jdbcType=INTEGER}, #{receivePhone,jdbcType=VARCHAR}, #{receiveProvince,jdbcType=VARCHAR}, 
+      #{receiveCity,jdbcType=VARCHAR}, #{receiveDistrict,jdbcType=VARCHAR}, #{receiveDetailaddress,jdbcType=VARCHAR}, 
+      #{receiveDelId,jdbcType=INTEGER}, #{routeId,jdbcType=INTEGER}, #{frequencyId,jdbcType=INTEGER}, 
+      #{driverId,jdbcType=INTEGER}, #{insteadGoodsPayment,jdbcType=DECIMAL}, #{insteadServiceCharge,jdbcType=DECIMAL}, 
+      #{doorGetPayment,jdbcType=DECIMAL}, #{doorGetTime,jdbcType=VARCHAR}, #{goodsStatementValue,jdbcType=DECIMAL}, 
+      #{insuranceCharge,jdbcType=DECIMAL}, #{packingCharge,jdbcType=DECIMAL}, #{otherCharge,jdbcType=DECIMAL}, 
+      #{totalAccount,jdbcType=DECIMAL}, #{freightCharge,jdbcType=DECIMAL}, #{serviceCharge,jdbcType=DECIMAL}, 
+      #{totalCharge,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isCheck,jdbcType=VARCHAR}, #{isNoUse,jdbcType=VARCHAR}, #{actualGet,jdbcType=DECIMAL}, 
+      #{isEBusiness,jdbcType=VARCHAR}, #{driverRemark,jdbcType=VARCHAR}, #{actualInsteadGet,jdbcType=DECIMAL}, 
+      #{isBalance,jdbcType=VARCHAR}, #{isBalanceInstead,jdbcType=VARCHAR}, #{isGiveOut,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=INTEGER}, #{logisticsCompanyName,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into logistics_waybill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logisticsCompanyId != null">
+        logistics_company_id,
+      </if>
+      <if test="waybillNumber != null">
+        waybill_number,
+      </if>
+      <if test="sendCompanyName != null">
+        send_company_name,
+      </if>
+      <if test="sendCompanyId != null">
+        send_company_id,
+      </if>
+      <if test="sendCustomerId != null">
+        send_customer_id,
+      </if>
+      <if test="sendName != null">
+        send_name,
+      </if>
+      <if test="sendConId != null">
+        send_con_id,
+      </if>
+      <if test="sendPhone != null">
+        send_phone,
+      </if>
+      <if test="sendProvince != null">
+        send_province,
+      </if>
+      <if test="sendCity != null">
+        send_city,
+      </if>
+      <if test="sendDistrict != null">
+        send_district,
+      </if>
+      <if test="sendDetailaddress != null">
+        send_detailaddress,
+      </if>
+      <if test="sendDelId != null">
+        send_del_id,
+      </if>
+      <if test="receiveCompanyName != null">
+        receive_company_name,
+      </if>
+      <if test="receiveCompanyId != null">
+        receive_company_id,
+      </if>
+      <if test="receiveCustomerId != null">
+        receive_customer_id,
+      </if>
+      <if test="receiveName != null">
+        receive_name,
+      </if>
+      <if test="receiveConId != null">
+        receive_con_id,
+      </if>
+      <if test="receivePhone != null">
+        receive_phone,
+      </if>
+      <if test="receiveProvince != null">
+        receive_province,
+      </if>
+      <if test="receiveCity != null">
+        receive_city,
+      </if>
+      <if test="receiveDistrict != null">
+        receive_district,
+      </if>
+      <if test="receiveDetailaddress != null">
+        receive_detailaddress,
+      </if>
+      <if test="receiveDelId != null">
+        receive_del_id,
+      </if>
+      <if test="routeId != null">
+        route_id,
+      </if>
+      <if test="frequencyId != null">
+        frequency_id,
+      </if>
+      <if test="driverId != null">
+        driver_id,
+      </if>
+      <if test="insteadGoodsPayment != null">
+        instead_goods_payment,
+      </if>
+      <if test="insteadServiceCharge != null">
+        instead_service_charge,
+      </if>
+      <if test="doorGetPayment != null">
+        door_get_payment,
+      </if>
+      <if test="doorGetTime != null">
+        door_get_time,
+      </if>
+      <if test="goodsStatementValue != null">
+        goods_statement_value,
+      </if>
+      <if test="insuranceCharge != null">
+        insurance_charge,
+      </if>
+      <if test="packingCharge != null">
+        packing_charge,
+      </if>
+      <if test="otherCharge != null">
+        other_charge,
+      </if>
+      <if test="totalAccount != null">
+        total_account,
+      </if>
+      <if test="freightCharge != null">
+        freight_charge,
+      </if>
+      <if test="serviceCharge != null">
+        service_charge,
+      </if>
+      <if test="totalCharge != null">
+        total_charge,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isCheck != null">
+        is_check,
+      </if>
+      <if test="isNoUse != null">
+        is_no_use,
+      </if>
+      <if test="actualGet != null">
+        actual_get,
+      </if>
+      <if test="isEBusiness != null">
+        is_e_business,
+      </if>
+      <if test="driverRemark != null">
+        driver_remark,
+      </if>
+      <if test="actualInsteadGet != null">
+        actual_instead_get,
+      </if>
+      <if test="isBalance != null">
+        is_balance,
+      </if>
+      <if test="isBalanceInstead != null">
+        is_balance_instead,
+      </if>
+      <if test="isGiveOut != null">
+        is_give_out,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="logisticsCompanyName != null">
+        logistics_company_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logisticsCompanyId != null">
+        #{logisticsCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="waybillNumber != null">
+        #{waybillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCompanyName != null">
+        #{sendCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCompanyId != null">
+        #{sendCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="sendCustomerId != null">
+        #{sendCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="sendName != null">
+        #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendConId != null">
+        #{sendConId,jdbcType=INTEGER},
+      </if>
+      <if test="sendPhone != null">
+        #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendProvince != null">
+        #{sendProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCity != null">
+        #{sendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDistrict != null">
+        #{sendDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDetailaddress != null">
+        #{sendDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDelId != null">
+        #{sendDelId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCompanyName != null">
+        #{receiveCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCompanyId != null">
+        #{receiveCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCustomerId != null">
+        #{receiveCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveConId != null">
+        #{receiveConId,jdbcType=INTEGER},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvince != null">
+        #{receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCity != null">
+        #{receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDistrict != null">
+        #{receiveDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailaddress != null">
+        #{receiveDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDelId != null">
+        #{receiveDelId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null">
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="frequencyId != null">
+        #{frequencyId,jdbcType=INTEGER},
+      </if>
+      <if test="driverId != null">
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="insteadGoodsPayment != null">
+        #{insteadGoodsPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="insteadServiceCharge != null">
+        #{insteadServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="doorGetPayment != null">
+        #{doorGetPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="doorGetTime != null">
+        #{doorGetTime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatementValue != null">
+        #{goodsStatementValue,jdbcType=DECIMAL},
+      </if>
+      <if test="insuranceCharge != null">
+        #{insuranceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="packingCharge != null">
+        #{packingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCharge != null">
+        #{otherCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAccount != null">
+        #{totalAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightCharge != null">
+        #{freightCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCharge != null">
+        #{totalCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCheck != null">
+        #{isCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="isNoUse != null">
+        #{isNoUse,jdbcType=VARCHAR},
+      </if>
+      <if test="actualGet != null">
+        #{actualGet,jdbcType=DECIMAL},
+      </if>
+      <if test="isEBusiness != null">
+        #{isEBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="driverRemark != null">
+        #{driverRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="actualInsteadGet != null">
+        #{actualInsteadGet,jdbcType=DECIMAL},
+      </if>
+      <if test="isBalance != null">
+        #{isBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="isBalanceInstead != null">
+        #{isBalanceInstead,jdbcType=VARCHAR},
+      </if>
+      <if test="isGiveOut != null">
+        #{isGiveOut,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsCompanyName != null">
+        #{logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybillExample" resultType="java.lang.Long">
+    select count(*) from logistics_waybill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update logistics_waybill
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.logisticsCompanyId != null">
+        logistics_company_id = #{record.logisticsCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.waybillNumber != null">
+        waybill_number = #{record.waybillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendCompanyName != null">
+        send_company_name = #{record.sendCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendCompanyId != null">
+        send_company_id = #{record.sendCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendCustomerId != null">
+        send_customer_id = #{record.sendCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendName != null">
+        send_name = #{record.sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendConId != null">
+        send_con_id = #{record.sendConId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPhone != null">
+        send_phone = #{record.sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendProvince != null">
+        send_province = #{record.sendProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendCity != null">
+        send_city = #{record.sendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDistrict != null">
+        send_district = #{record.sendDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDetailaddress != null">
+        send_detailaddress = #{record.sendDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDelId != null">
+        send_del_id = #{record.sendDelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveCompanyName != null">
+        receive_company_name = #{record.receiveCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCompanyId != null">
+        receive_company_id = #{record.receiveCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveCustomerId != null">
+        receive_customer_id = #{record.receiveCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveName != null">
+        receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveConId != null">
+        receive_con_id = #{record.receiveConId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivePhone != null">
+        receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveProvince != null">
+        receive_province = #{record.receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCity != null">
+        receive_city = #{record.receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveDistrict != null">
+        receive_district = #{record.receiveDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveDetailaddress != null">
+        receive_detailaddress = #{record.receiveDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveDelId != null">
+        receive_del_id = #{record.receiveDelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.routeId != null">
+        route_id = #{record.routeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.frequencyId != null">
+        frequency_id = #{record.frequencyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.driverId != null">
+        driver_id = #{record.driverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.insteadGoodsPayment != null">
+        instead_goods_payment = #{record.insteadGoodsPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insteadServiceCharge != null">
+        instead_service_charge = #{record.insteadServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.doorGetPayment != null">
+        door_get_payment = #{record.doorGetPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="record.doorGetTime != null">
+        door_get_time = #{record.doorGetTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsStatementValue != null">
+        goods_statement_value = #{record.goodsStatementValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insuranceCharge != null">
+        insurance_charge = #{record.insuranceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.packingCharge != null">
+        packing_charge = #{record.packingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.otherCharge != null">
+        other_charge = #{record.otherCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalAccount != null">
+        total_account = #{record.totalAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freightCharge != null">
+        freight_charge = #{record.freightCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.serviceCharge != null">
+        service_charge = #{record.serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalCharge != null">
+        total_charge = #{record.totalCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentType != null">
+        payment_type = #{record.paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isCheck != null">
+        is_check = #{record.isCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isNoUse != null">
+        is_no_use = #{record.isNoUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualGet != null">
+        actual_get = #{record.actualGet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isEBusiness != null">
+        is_e_business = #{record.isEBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverRemark != null">
+        driver_remark = #{record.driverRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualInsteadGet != null">
+        actual_instead_get = #{record.actualInsteadGet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isBalance != null">
+        is_balance = #{record.isBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBalanceInstead != null">
+        is_balance_instead = #{record.isBalanceInstead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGiveOut != null">
+        is_give_out = #{record.isGiveOut,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorId != null">
+        operator_id = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logisticsCompanyName != null">
+        logistics_company_name = #{record.logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update logistics_waybill
+    set id = #{record.id,jdbcType=INTEGER},
+      logistics_company_id = #{record.logisticsCompanyId,jdbcType=INTEGER},
+      waybill_number = #{record.waybillNumber,jdbcType=VARCHAR},
+      send_company_name = #{record.sendCompanyName,jdbcType=VARCHAR},
+      send_company_id = #{record.sendCompanyId,jdbcType=INTEGER},
+      send_customer_id = #{record.sendCustomerId,jdbcType=INTEGER},
+      send_name = #{record.sendName,jdbcType=VARCHAR},
+      send_con_id = #{record.sendConId,jdbcType=INTEGER},
+      send_phone = #{record.sendPhone,jdbcType=VARCHAR},
+      send_province = #{record.sendProvince,jdbcType=VARCHAR},
+      send_city = #{record.sendCity,jdbcType=VARCHAR},
+      send_district = #{record.sendDistrict,jdbcType=VARCHAR},
+      send_detailaddress = #{record.sendDetailaddress,jdbcType=VARCHAR},
+      send_del_id = #{record.sendDelId,jdbcType=INTEGER},
+      receive_company_name = #{record.receiveCompanyName,jdbcType=VARCHAR},
+      receive_company_id = #{record.receiveCompanyId,jdbcType=INTEGER},
+      receive_customer_id = #{record.receiveCustomerId,jdbcType=INTEGER},
+      receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      receive_con_id = #{record.receiveConId,jdbcType=INTEGER},
+      receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      receive_province = #{record.receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{record.receiveCity,jdbcType=VARCHAR},
+      receive_district = #{record.receiveDistrict,jdbcType=VARCHAR},
+      receive_detailaddress = #{record.receiveDetailaddress,jdbcType=VARCHAR},
+      receive_del_id = #{record.receiveDelId,jdbcType=INTEGER},
+      route_id = #{record.routeId,jdbcType=INTEGER},
+      frequency_id = #{record.frequencyId,jdbcType=INTEGER},
+      driver_id = #{record.driverId,jdbcType=INTEGER},
+      instead_goods_payment = #{record.insteadGoodsPayment,jdbcType=DECIMAL},
+      instead_service_charge = #{record.insteadServiceCharge,jdbcType=DECIMAL},
+      door_get_payment = #{record.doorGetPayment,jdbcType=DECIMAL},
+      door_get_time = #{record.doorGetTime,jdbcType=VARCHAR},
+      goods_statement_value = #{record.goodsStatementValue,jdbcType=DECIMAL},
+      insurance_charge = #{record.insuranceCharge,jdbcType=DECIMAL},
+      packing_charge = #{record.packingCharge,jdbcType=DECIMAL},
+      other_charge = #{record.otherCharge,jdbcType=DECIMAL},
+      total_account = #{record.totalAccount,jdbcType=DECIMAL},
+      freight_charge = #{record.freightCharge,jdbcType=DECIMAL},
+      service_charge = #{record.serviceCharge,jdbcType=DECIMAL},
+      total_charge = #{record.totalCharge,jdbcType=DECIMAL},
+      payment_type = #{record.paymentType,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      is_check = #{record.isCheck,jdbcType=VARCHAR},
+      is_no_use = #{record.isNoUse,jdbcType=VARCHAR},
+      actual_get = #{record.actualGet,jdbcType=DECIMAL},
+      is_e_business = #{record.isEBusiness,jdbcType=VARCHAR},
+      driver_remark = #{record.driverRemark,jdbcType=VARCHAR},
+      actual_instead_get = #{record.actualInsteadGet,jdbcType=DECIMAL},
+      is_balance = #{record.isBalance,jdbcType=VARCHAR},
+      is_balance_instead = #{record.isBalanceInstead,jdbcType=VARCHAR},
+      is_give_out = #{record.isGiveOut,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      logistics_company_name = #{record.logisticsCompanyName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update logistics_waybill
+    set id = #{record.id,jdbcType=INTEGER},
+      logistics_company_id = #{record.logisticsCompanyId,jdbcType=INTEGER},
+      waybill_number = #{record.waybillNumber,jdbcType=VARCHAR},
+      send_company_name = #{record.sendCompanyName,jdbcType=VARCHAR},
+      send_company_id = #{record.sendCompanyId,jdbcType=INTEGER},
+      send_customer_id = #{record.sendCustomerId,jdbcType=INTEGER},
+      send_name = #{record.sendName,jdbcType=VARCHAR},
+      send_con_id = #{record.sendConId,jdbcType=INTEGER},
+      send_phone = #{record.sendPhone,jdbcType=VARCHAR},
+      send_province = #{record.sendProvince,jdbcType=VARCHAR},
+      send_city = #{record.sendCity,jdbcType=VARCHAR},
+      send_district = #{record.sendDistrict,jdbcType=VARCHAR},
+      send_detailaddress = #{record.sendDetailaddress,jdbcType=VARCHAR},
+      send_del_id = #{record.sendDelId,jdbcType=INTEGER},
+      receive_company_name = #{record.receiveCompanyName,jdbcType=VARCHAR},
+      receive_company_id = #{record.receiveCompanyId,jdbcType=INTEGER},
+      receive_customer_id = #{record.receiveCustomerId,jdbcType=INTEGER},
+      receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      receive_con_id = #{record.receiveConId,jdbcType=INTEGER},
+      receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      receive_province = #{record.receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{record.receiveCity,jdbcType=VARCHAR},
+      receive_district = #{record.receiveDistrict,jdbcType=VARCHAR},
+      receive_detailaddress = #{record.receiveDetailaddress,jdbcType=VARCHAR},
+      receive_del_id = #{record.receiveDelId,jdbcType=INTEGER},
+      route_id = #{record.routeId,jdbcType=INTEGER},
+      frequency_id = #{record.frequencyId,jdbcType=INTEGER},
+      driver_id = #{record.driverId,jdbcType=INTEGER},
+      instead_goods_payment = #{record.insteadGoodsPayment,jdbcType=DECIMAL},
+      instead_service_charge = #{record.insteadServiceCharge,jdbcType=DECIMAL},
+      door_get_payment = #{record.doorGetPayment,jdbcType=DECIMAL},
+      door_get_time = #{record.doorGetTime,jdbcType=VARCHAR},
+      goods_statement_value = #{record.goodsStatementValue,jdbcType=DECIMAL},
+      insurance_charge = #{record.insuranceCharge,jdbcType=DECIMAL},
+      packing_charge = #{record.packingCharge,jdbcType=DECIMAL},
+      other_charge = #{record.otherCharge,jdbcType=DECIMAL},
+      total_account = #{record.totalAccount,jdbcType=DECIMAL},
+      freight_charge = #{record.freightCharge,jdbcType=DECIMAL},
+      service_charge = #{record.serviceCharge,jdbcType=DECIMAL},
+      total_charge = #{record.totalCharge,jdbcType=DECIMAL},
+      payment_type = #{record.paymentType,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      is_check = #{record.isCheck,jdbcType=VARCHAR},
+      is_no_use = #{record.isNoUse,jdbcType=VARCHAR},
+      actual_get = #{record.actualGet,jdbcType=DECIMAL},
+      is_e_business = #{record.isEBusiness,jdbcType=VARCHAR},
+      driver_remark = #{record.driverRemark,jdbcType=VARCHAR},
+      actual_instead_get = #{record.actualInsteadGet,jdbcType=DECIMAL},
+      is_balance = #{record.isBalance,jdbcType=VARCHAR},
+      is_balance_instead = #{record.isBalanceInstead,jdbcType=VARCHAR},
+      is_give_out = #{record.isGiveOut,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      logistics_company_name = #{record.logisticsCompanyName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    update logistics_waybill
+    <set>
+      <if test="logisticsCompanyId != null">
+        logistics_company_id = #{logisticsCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="waybillNumber != null">
+        waybill_number = #{waybillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCompanyName != null">
+        send_company_name = #{sendCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCompanyId != null">
+        send_company_id = #{sendCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="sendCustomerId != null">
+        send_customer_id = #{sendCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="sendName != null">
+        send_name = #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendConId != null">
+        send_con_id = #{sendConId,jdbcType=INTEGER},
+      </if>
+      <if test="sendPhone != null">
+        send_phone = #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendProvince != null">
+        send_province = #{sendProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCity != null">
+        send_city = #{sendCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDistrict != null">
+        send_district = #{sendDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDetailaddress != null">
+        send_detailaddress = #{sendDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDelId != null">
+        send_del_id = #{sendDelId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCompanyName != null">
+        receive_company_name = #{receiveCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCompanyId != null">
+        receive_company_id = #{receiveCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCustomerId != null">
+        receive_customer_id = #{receiveCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveName != null">
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveConId != null">
+        receive_con_id = #{receiveConId,jdbcType=INTEGER},
+      </if>
+      <if test="receivePhone != null">
+        receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvince != null">
+        receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCity != null">
+        receive_city = #{receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDistrict != null">
+        receive_district = #{receiveDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailaddress != null">
+        receive_detailaddress = #{receiveDetailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDelId != null">
+        receive_del_id = #{receiveDelId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null">
+        route_id = #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="frequencyId != null">
+        frequency_id = #{frequencyId,jdbcType=INTEGER},
+      </if>
+      <if test="driverId != null">
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="insteadGoodsPayment != null">
+        instead_goods_payment = #{insteadGoodsPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="insteadServiceCharge != null">
+        instead_service_charge = #{insteadServiceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="doorGetPayment != null">
+        door_get_payment = #{doorGetPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="doorGetTime != null">
+        door_get_time = #{doorGetTime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatementValue != null">
+        goods_statement_value = #{goodsStatementValue,jdbcType=DECIMAL},
+      </if>
+      <if test="insuranceCharge != null">
+        insurance_charge = #{insuranceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="packingCharge != null">
+        packing_charge = #{packingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCharge != null">
+        other_charge = #{otherCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAccount != null">
+        total_account = #{totalAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightCharge != null">
+        freight_charge = #{freightCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCharge != null">
+        total_charge = #{totalCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCheck != null">
+        is_check = #{isCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="isNoUse != null">
+        is_no_use = #{isNoUse,jdbcType=VARCHAR},
+      </if>
+      <if test="actualGet != null">
+        actual_get = #{actualGet,jdbcType=DECIMAL},
+      </if>
+      <if test="isEBusiness != null">
+        is_e_business = #{isEBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="driverRemark != null">
+        driver_remark = #{driverRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="actualInsteadGet != null">
+        actual_instead_get = #{actualInsteadGet,jdbcType=DECIMAL},
+      </if>
+      <if test="isBalance != null">
+        is_balance = #{isBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="isBalanceInstead != null">
+        is_balance_instead = #{isBalanceInstead,jdbcType=VARCHAR},
+      </if>
+      <if test="isGiveOut != null">
+        is_give_out = #{isGiveOut,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsCompanyName != null">
+        logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    update logistics_waybill
+    set logistics_company_id = #{logisticsCompanyId,jdbcType=INTEGER},
+      waybill_number = #{waybillNumber,jdbcType=VARCHAR},
+      send_company_name = #{sendCompanyName,jdbcType=VARCHAR},
+      send_company_id = #{sendCompanyId,jdbcType=INTEGER},
+      send_customer_id = #{sendCustomerId,jdbcType=INTEGER},
+      send_name = #{sendName,jdbcType=VARCHAR},
+      send_con_id = #{sendConId,jdbcType=INTEGER},
+      send_phone = #{sendPhone,jdbcType=VARCHAR},
+      send_province = #{sendProvince,jdbcType=VARCHAR},
+      send_city = #{sendCity,jdbcType=VARCHAR},
+      send_district = #{sendDistrict,jdbcType=VARCHAR},
+      send_detailaddress = #{sendDetailaddress,jdbcType=VARCHAR},
+      send_del_id = #{sendDelId,jdbcType=INTEGER},
+      receive_company_name = #{receiveCompanyName,jdbcType=VARCHAR},
+      receive_company_id = #{receiveCompanyId,jdbcType=INTEGER},
+      receive_customer_id = #{receiveCustomerId,jdbcType=INTEGER},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_con_id = #{receiveConId,jdbcType=INTEGER},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{receiveCity,jdbcType=VARCHAR},
+      receive_district = #{receiveDistrict,jdbcType=VARCHAR},
+      receive_detailaddress = #{receiveDetailaddress,jdbcType=VARCHAR},
+      receive_del_id = #{receiveDelId,jdbcType=INTEGER},
+      route_id = #{routeId,jdbcType=INTEGER},
+      frequency_id = #{frequencyId,jdbcType=INTEGER},
+      driver_id = #{driverId,jdbcType=INTEGER},
+      instead_goods_payment = #{insteadGoodsPayment,jdbcType=DECIMAL},
+      instead_service_charge = #{insteadServiceCharge,jdbcType=DECIMAL},
+      door_get_payment = #{doorGetPayment,jdbcType=DECIMAL},
+      door_get_time = #{doorGetTime,jdbcType=VARCHAR},
+      goods_statement_value = #{goodsStatementValue,jdbcType=DECIMAL},
+      insurance_charge = #{insuranceCharge,jdbcType=DECIMAL},
+      packing_charge = #{packingCharge,jdbcType=DECIMAL},
+      other_charge = #{otherCharge,jdbcType=DECIMAL},
+      total_account = #{totalAccount,jdbcType=DECIMAL},
+      freight_charge = #{freightCharge,jdbcType=DECIMAL},
+      service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      total_charge = #{totalCharge,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_check = #{isCheck,jdbcType=VARCHAR},
+      is_no_use = #{isNoUse,jdbcType=VARCHAR},
+      actual_get = #{actualGet,jdbcType=DECIMAL},
+      is_e_business = #{isEBusiness,jdbcType=VARCHAR},
+      driver_remark = #{driverRemark,jdbcType=VARCHAR},
+      actual_instead_get = #{actualInsteadGet,jdbcType=DECIMAL},
+      is_balance = #{isBalance,jdbcType=VARCHAR},
+      is_balance_instead = #{isBalanceInstead,jdbcType=VARCHAR},
+      is_give_out = #{isGiveOut,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgstw.logisticsmic.entity.po.LogisticsWaybill">
+    update logistics_waybill
+    set logistics_company_id = #{logisticsCompanyId,jdbcType=INTEGER},
+      waybill_number = #{waybillNumber,jdbcType=VARCHAR},
+      send_company_name = #{sendCompanyName,jdbcType=VARCHAR},
+      send_company_id = #{sendCompanyId,jdbcType=INTEGER},
+      send_customer_id = #{sendCustomerId,jdbcType=INTEGER},
+      send_name = #{sendName,jdbcType=VARCHAR},
+      send_con_id = #{sendConId,jdbcType=INTEGER},
+      send_phone = #{sendPhone,jdbcType=VARCHAR},
+      send_province = #{sendProvince,jdbcType=VARCHAR},
+      send_city = #{sendCity,jdbcType=VARCHAR},
+      send_district = #{sendDistrict,jdbcType=VARCHAR},
+      send_detailaddress = #{sendDetailaddress,jdbcType=VARCHAR},
+      send_del_id = #{sendDelId,jdbcType=INTEGER},
+      receive_company_name = #{receiveCompanyName,jdbcType=VARCHAR},
+      receive_company_id = #{receiveCompanyId,jdbcType=INTEGER},
+      receive_customer_id = #{receiveCustomerId,jdbcType=INTEGER},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_con_id = #{receiveConId,jdbcType=INTEGER},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{receiveCity,jdbcType=VARCHAR},
+      receive_district = #{receiveDistrict,jdbcType=VARCHAR},
+      receive_detailaddress = #{receiveDetailaddress,jdbcType=VARCHAR},
+      receive_del_id = #{receiveDelId,jdbcType=INTEGER},
+      route_id = #{routeId,jdbcType=INTEGER},
+      frequency_id = #{frequencyId,jdbcType=INTEGER},
+      driver_id = #{driverId,jdbcType=INTEGER},
+      instead_goods_payment = #{insteadGoodsPayment,jdbcType=DECIMAL},
+      instead_service_charge = #{insteadServiceCharge,jdbcType=DECIMAL},
+      door_get_payment = #{doorGetPayment,jdbcType=DECIMAL},
+      door_get_time = #{doorGetTime,jdbcType=VARCHAR},
+      goods_statement_value = #{goodsStatementValue,jdbcType=DECIMAL},
+      insurance_charge = #{insuranceCharge,jdbcType=DECIMAL},
+      packing_charge = #{packingCharge,jdbcType=DECIMAL},
+      other_charge = #{otherCharge,jdbcType=DECIMAL},
+      total_account = #{totalAccount,jdbcType=DECIMAL},
+      freight_charge = #{freightCharge,jdbcType=DECIMAL},
+      service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      total_charge = #{totalCharge,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_check = #{isCheck,jdbcType=VARCHAR},
+      is_no_use = #{isNoUse,jdbcType=VARCHAR},
+      actual_get = #{actualGet,jdbcType=DECIMAL},
+      is_e_business = #{isEBusiness,jdbcType=VARCHAR},
+      driver_remark = #{driverRemark,jdbcType=VARCHAR},
+      actual_instead_get = #{actualInsteadGet,jdbcType=DECIMAL},
+      is_balance = #{isBalance,jdbcType=VARCHAR},
+      is_balance_instead = #{isBalanceInstead,jdbcType=VARCHAR},
+      is_give_out = #{isGiveOut,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

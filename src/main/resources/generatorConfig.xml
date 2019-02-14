@@ -16,7 +16,7 @@
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.0.100:3306/ctgdb" userId="root"
+                        connectionURL="jdbc:mysql://192.168.0.101:3306/ctgdb" userId="root"
                         password="ctg@123456">
         </jdbcConnection>
         <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制 -->
@@ -44,7 +44,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="userinfo" domainObjectName="UserInfo" enableCountByExample="true"
+        <table tableName="logistics_waybill_goods" domainObjectName="LogisticsWaybillGoods" enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true">
             <property name="useActualColumnNames" value="false"/>
