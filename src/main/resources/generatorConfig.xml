@@ -44,7 +44,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="logistics_waybill_goods" domainObjectName="LogisticsWaybillGoods" enableCountByExample="true"
+        <table tableName="logistics_waybill_number_use" domainObjectName="LogisticsWaybillNumberUse" enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true">
             <property name="useActualColumnNames" value="false"/>
