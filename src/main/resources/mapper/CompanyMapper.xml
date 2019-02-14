@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgstw.logisticsmic.mapper.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.ctgstw.logisticsmic.entity.po.Company">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orgname" jdbcType="VARCHAR" property="orgname" />
+    <result column="legalman" jdbcType="VARCHAR" property="legalman" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="create_userid" jdbcType="INTEGER" property="createUserid" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="qipeicheng" jdbcType="VARCHAR" property="qipeicheng" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="invitationcode" jdbcType="VARCHAR" property="invitationcode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="shotname" jdbcType="VARCHAR" property="shotname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="netaddress" jdbcType="VARCHAR" property="netaddress" />
+    <result column="companyId" jdbcType="VARCHAR" property="companyid" />
+    <result column="attestation" jdbcType="VARCHAR" property="attestation" />
+    <result column="isDeleted" jdbcType="TINYINT" property="isdeleted" />
+    <result column="company_scale" jdbcType="VARCHAR" property="companyScale" />
+    <result column="employee_scale" jdbcType="VARCHAR" property="employeeScale" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="wxIndexImg" jdbcType="VARCHAR" property="wxindeximg" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctgstw.logisticsmic.entity.po.Company">
+    <result column="profile" jdbcType="LONGVARCHAR" property="profile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, orgname, legalman, parentid, create_userid, industry, phone, province, city, 
+    district, qipeicheng, address, invitationcode, status, create_time, update_time, 
+    shotname, email, wechat, logo, netaddress, companyId, attestation, isDeleted, company_scale, 
+    employee_scale, platform, wxIndexImg
+  </sql>
+  <sql id="Blob_Column_List">
+    profile
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ctgstw.logisticsmic.entity.po.CompanyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ctgstw.logisticsmic.entity.po.CompanyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ctgstw.logisticsmic.entity.po.CompanyExample">
+    delete from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ctgstw.logisticsmic.entity.po.Company">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into company (orgname, legalman, parentid, 
+      create_userid, industry, phone, 
+      province, city, district, 
+      qipeicheng, address, invitationcode, 
+      status, create_time, update_time, 
+      shotname, email, wechat, 
+      logo, netaddress, companyId, 
+      attestation, isDeleted, company_scale, 
+      employee_scale, platform, wxIndexImg, 
+      profile)
+    values (#{orgname,jdbcType=VARCHAR}, #{legalman,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{createUserid,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{qipeicheng,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{invitationcode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{shotname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{logo,jdbcType=VARCHAR}, #{netaddress,jdbcType=VARCHAR}, #{companyid,jdbcType=VARCHAR}, 
+      #{attestation,jdbcType=VARCHAR}, #{isdeleted,jdbcType=TINYINT}, #{companyScale,jdbcType=VARCHAR}, 
+      #{employeeScale,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, #{wxindeximg,jdbcType=VARCHAR}, 
+      #{profile,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgstw.logisticsmic.entity.po.Company">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgname != null">
+        orgname,
+      </if>
+      <if test="legalman != null">
+        legalman,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="createUserid != null">
+        create_userid,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="qipeicheng != null">
+        qipeicheng,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="invitationcode != null">
+        invitationcode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="shotname != null">
+        shotname,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="netaddress != null">
+        netaddress,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="attestation != null">
+        attestation,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+      <if test="companyScale != null">
+        company_scale,
+      </if>
+      <if test="employeeScale != null">
+        employee_scale,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="wxindeximg != null">
+        wxIndexImg,
+      </if>
+      <if test="profile != null">
+        profile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgname != null">
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="legalman != null">
+        #{legalman,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createUserid != null">
+        #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="qipeicheng != null">
+        #{qipeicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationcode != null">
+        #{invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shotname != null">
+        #{shotname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="netaddress != null">
+        #{netaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="attestation != null">
+        #{attestation,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="companyScale != null">
+        #{companyScale,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeScale != null">
+        #{employeeScale,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="wxindeximg != null">
+        #{wxindeximg,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        #{profile,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ctgstw.logisticsmic.entity.po.CompanyExample" resultType="java.lang.Long">
+    select count(*) from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update company
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgname != null">
+        orgname = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalman != null">
+        legalman = #{record.legalman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null">
+        parentid = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUserid != null">
+        create_userid = #{record.createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.industry != null">
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null">
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qipeicheng != null">
+        qipeicheng = #{record.qipeicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invitationcode != null">
+        invitationcode = #{record.invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shotname != null">
+        shotname = #{record.shotname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null">
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null">
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netaddress != null">
+        netaddress = #{record.netaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyid != null">
+        companyId = #{record.companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attestation != null">
+        attestation = #{record.attestation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdeleted != null">
+        isDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.companyScale != null">
+        company_scale = #{record.companyScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeScale != null">
+        employee_scale = #{record.employeeScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxindeximg != null">
+        wxIndexImg = #{record.wxindeximg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.profile != null">
+        profile = #{record.profile,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update company
+    set id = #{record.id,jdbcType=INTEGER},
+      orgname = #{record.orgname,jdbcType=VARCHAR},
+      legalman = #{record.legalman,jdbcType=VARCHAR},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      create_userid = #{record.createUserid,jdbcType=INTEGER},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      qipeicheng = #{record.qipeicheng,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      invitationcode = #{record.invitationcode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      shotname = #{record.shotname,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      netaddress = #{record.netaddress,jdbcType=VARCHAR},
+      companyId = #{record.companyid,jdbcType=VARCHAR},
+      attestation = #{record.attestation,jdbcType=VARCHAR},
+      isDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      company_scale = #{record.companyScale,jdbcType=VARCHAR},
+      employee_scale = #{record.employeeScale,jdbcType=VARCHAR},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      wxIndexImg = #{record.wxindeximg,jdbcType=VARCHAR},
+      profile = #{record.profile,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update company
+    set id = #{record.id,jdbcType=INTEGER},
+      orgname = #{record.orgname,jdbcType=VARCHAR},
+      legalman = #{record.legalman,jdbcType=VARCHAR},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      create_userid = #{record.createUserid,jdbcType=INTEGER},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      qipeicheng = #{record.qipeicheng,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      invitationcode = #{record.invitationcode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      shotname = #{record.shotname,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      netaddress = #{record.netaddress,jdbcType=VARCHAR},
+      companyId = #{record.companyid,jdbcType=VARCHAR},
+      attestation = #{record.attestation,jdbcType=VARCHAR},
+      isDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      company_scale = #{record.companyScale,jdbcType=VARCHAR},
+      employee_scale = #{record.employeeScale,jdbcType=VARCHAR},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      wxIndexImg = #{record.wxindeximg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgstw.logisticsmic.entity.po.Company">
+    update company
+    <set>
+      <if test="orgname != null">
+        orgname = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="legalman != null">
+        legalman = #{legalman,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createUserid != null">
+        create_userid = #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="qipeicheng != null">
+        qipeicheng = #{qipeicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationcode != null">
+        invitationcode = #{invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shotname != null">
+        shotname = #{shotname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="netaddress != null">
+        netaddress = #{netaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="attestation != null">
+        attestation = #{attestation,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="companyScale != null">
+        company_scale = #{companyScale,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeScale != null">
+        employee_scale = #{employeeScale,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="wxindeximg != null">
+        wxIndexImg = #{wxindeximg,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctgstw.logisticsmic.entity.po.Company">
+    update company
+    set orgname = #{orgname,jdbcType=VARCHAR},
+      legalman = #{legalman,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      create_userid = #{createUserid,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      qipeicheng = #{qipeicheng,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      invitationcode = #{invitationcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      shotname = #{shotname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      netaddress = #{netaddress,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=VARCHAR},
+      attestation = #{attestation,jdbcType=VARCHAR},
+      isDeleted = #{isdeleted,jdbcType=TINYINT},
+      company_scale = #{companyScale,jdbcType=VARCHAR},
+      employee_scale = #{employeeScale,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      wxIndexImg = #{wxindeximg,jdbcType=VARCHAR},
+      profile = #{profile,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgstw.logisticsmic.entity.po.Company">
+    update company
+    set orgname = #{orgname,jdbcType=VARCHAR},
+      legalman = #{legalman,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      create_userid = #{createUserid,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      qipeicheng = #{qipeicheng,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      invitationcode = #{invitationcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      shotname = #{shotname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      netaddress = #{netaddress,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=VARCHAR},
+      attestation = #{attestation,jdbcType=VARCHAR},
+      isDeleted = #{isdeleted,jdbcType=TINYINT},
+      company_scale = #{companyScale,jdbcType=VARCHAR},
+      employee_scale = #{employeeScale,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      wxIndexImg = #{wxindeximg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
