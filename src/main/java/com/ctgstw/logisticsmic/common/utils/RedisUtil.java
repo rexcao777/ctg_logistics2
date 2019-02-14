@@ -1,7 +1,7 @@
 package com.ctgstw.logisticsmic.common.utils;
 
-import com.ctgstw.urmmicro.common.constant.Const;
-import com.ctgstw.urmmicro.common.entity.UserLoginStateBean;
+import com.ctgstw.logisticsmic.common.constant.Const;
+import com.ctgstw.logisticsmic.common.entity.UserLoginStateBean;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -24,25 +24,25 @@ public class RedisUtil {
         UserLoginStateBean userStateBean = new UserLoginStateBean();
         userStateBean.setLoginTime(loginTime);
         userStateBean.setEndTime(endTime);
-        com.ctgstw.urmmicro.config.RedisConfig.leftPushToList(userLogkey, userStateBean);
-        com.ctgstw.urmmicro.config.RedisConfig.setEx(userIDKey, token, Const.REDIS_SESSION_EXTIME);
-        com.ctgstw.urmmicro.config.RedisConfig.setEx(token, "1", Const.REDIS_SESSION_EXTIME);
+        com.ctgstw.logisticsmic.config.RedisConfig.leftPushToList(userLogkey, userStateBean);
+        com.ctgstw.logisticsmic.config.RedisConfig.setEx(userIDKey, token, Const.REDIS_SESSION_EXTIME);
+        com.ctgstw.logisticsmic.config.RedisConfig.setEx(token, "1", Const.REDIS_SESSION_EXTIME);
         if (companyID != null) {
-            com.ctgstw.urmmicro.config.RedisConfig.setForHash(Const.REDIS_COMPANYID_PREFIX + companyID, userIDKey, token);
+            com.ctgstw.logisticsmic.config.RedisConfig.setForHash(Const.REDIS_COMPANYID_PREFIX + companyID, userIDKey, token);
         }
     }
 
     private static void handleAccountRepeatLogin(String platform, int userID) {
         String userKey;
         userKey = Const.REDIS_USERID_PREFIX + userID + "_" + platform;
-        String token = com.ctgstw.urmmicro.config.RedisConfig.get(userKey);
+        String token = com.ctgstw.logisticsmic.config.RedisConfig.get(userKey);
         if (StringUtils.isBlank(token)) {
             return;
         }
-        String userState = com.ctgstw.urmmicro.config.RedisConfig.get(token);
+        String userState = com.ctgstw.logisticsmic.config.RedisConfig.get(token);
         if (StringUtils.isBlank(userState)) {
             return;
         }
-        com.ctgstw.urmmicro.config.RedisConfig.setAndExpire(token, "-1");
+        com.ctgstw.logisticsmic.config.RedisConfig.setAndExpire(token, "-1");
     }
 }

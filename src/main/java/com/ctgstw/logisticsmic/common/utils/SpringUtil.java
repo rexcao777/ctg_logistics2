@@ -1,7 +1,6 @@
 package com.ctgstw.logisticsmic.common.utils;
 
 
-import com.ctgstw.urmmicro.pattern.CompanyManageInfoAdmin;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -30,9 +29,9 @@ public class SpringUtil implements ApplicationContextAware {
     }
 
     //通过name获取 Bean.
-    public static CompanyManageInfoAdmin getBean(String name) {
-        return (CompanyManageInfoAdmin)getApplicationContext().getBean(name);
-    }
+    //public static CompanyManageInfoAdmin getBean(String name) {
+    //    return (CompanyManageInfoAdmin)getApplicationContext().getBean(name);
+    //}
 
     //通过class获取Bean.
     public static <T> T getBean(Class<T> clazz) {

@@ -8,12 +8,12 @@ spring:
       login-timeout: 5
       maximum-pool-size: 350
       minimum-idle: 10
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.0.101:3306/ctgdb?characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: ctg@123456
   redis:
-    host: 192.168.0.100
+    host: 192.168.0.101
     port: 6379
     password: ctg@123456
     database: 20
